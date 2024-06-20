@@ -17,7 +17,9 @@ return {
             "MunifTanjim/nui.nvim",
         },
         config = function(_)
-            vim.keymap.set('n', '<leader>t', "<cmd>Neotree toggle<cr>", {desc="Open Neotree"})
+            vim.keymap.set('n', '<leader>t', "<cmd>Neotree toggle<cr>", { desc = "Open Neotree" })
+            vim.api.nvim_create_user_command("E", "Neotree position=current <args>",
+                { nargs = "?", complete = "dir" })
         end,
     },
 
@@ -28,9 +30,11 @@ return {
         keys = function()
             local builtin = require('telescope.builtin')
             return {
-                { "<leader>ff", builtin.find_files, desc = "Find files" },
-                { "<leader>fh", builtin.oldfiles, desc = "Find old files" },
-                { "<leader>fg", builtin.live_grep, desc = "Grep files" },
+                { "<leader>ff", builtin.find_files,     desc = "Find files" },
+                { "<leader>fh", builtin.oldfiles,       desc = "Find old files" },
+                { "<leader>fg", builtin.live_grep,      desc = "Grep files" },
+                { "<leader>fr", builtin.lsp_references, desc = "Find references" },
+                { "<leader>e",  builtin.diagnostics,    desc = "Show errors" },
             }
         end,
         cmd = {
@@ -50,7 +54,6 @@ return {
     {
         'alexghergh/nvim-tmux-navigation',
         config = function()
-
             local nvim_tmux_nav = require('nvim-tmux-navigation')
 
             nvim_tmux_nav.setup {
@@ -63,8 +66,20 @@ return {
             vim.keymap.set('n', "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
             vim.keymap.set('n', "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
             vim.keymap.set('n', "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
-
         end
+    },
+
+    {
+        'nvim-lualine/lualine.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        config = function()
+            require('lualine').setup()
+        end
+    },
+
+    {
+        'sindrets/diffview.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
     }
 
 }

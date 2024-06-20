@@ -1,19 +1,19 @@
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
-        {"williamboman/mason.nvim"},
-        {"williamboman/mason-lspconfig.nvim"},
-        {"hrsh7th/nvim-cmp",
-        dependencies = {
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path",
-            "saadparwaiz1/cmp_luasnip",
-            "L3MON4D3/LuaSnip" }
+        { "williamboman/mason.nvim" },
+        { "williamboman/mason-lspconfig.nvim" },
+        {
+            "hrsh7th/nvim-cmp",
+            dependencies = {
+                "hrsh7th/cmp-nvim-lsp",
+                "hrsh7th/cmp-buffer",
+                "hrsh7th/cmp-path",
+                "saadparwaiz1/cmp_luasnip",
+                "L3MON4D3/LuaSnip" }
         }
     },
     config = function(_)
-
         local luasnip = require("luasnip");
         local cmp = require('cmp')
         cmp.setup({
@@ -86,16 +86,17 @@ return {
                         },
                         root_dir = function(fname)
                             return require("lspconfig.util").root_pattern(
-                            "Makefile",
-                            "configure.ac",
-                            "configure.in",
-                            "config.h.in",
-                            "meson.build",
-                            "meson_options.txt",
-                            "build.ninja"
-                            )(fname) or require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
-                            fname
-                            ) or require("lspconfig.util").find_git_ancestor(fname)
+                                    "Makefile",
+                                    "configure.ac",
+                                    "configure.in",
+                                    "config.h.in",
+                                    "meson.build",
+                                    "meson_options.txt",
+                                    "build.ninja"
+                                )(fname) or
+                                require("lspconfig.util").root_pattern("compile_commands.json", "compile_flags.txt")(
+                                    fname
+                                ) or require("lspconfig.util").find_git_ancestor(fname)
                         end,
                         cmd = {
                             "clangd",
@@ -140,6 +141,5 @@ return {
                 vim.lsp.buf.format { async = false }
             end
         })
-
     end,
 }
