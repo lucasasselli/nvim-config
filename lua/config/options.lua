@@ -41,6 +41,6 @@ opt.foldmethod = "syntax"
 opt.foldlevel = 0
 
 -- netwr config
-vim.cmd("let g:netrw_liststyle = 3")
+vim.cmd("let g:netrw_liststyle = 0")
 vim.cmd("let g:netrw_banner = 0")
 vim.cmd("let g:netrw_hide = 1")

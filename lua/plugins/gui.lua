@@ -8,20 +8,20 @@ return {
         end,
     },
 
-    -- Neotree (file explorer)
-    {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v3.x",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "MunifTanjim/nui.nvim",
-        },
-        config = function(_)
-            vim.keymap.set('n', '<leader>t', "<cmd>Neotree toggle<cr>", { desc = "Open Neotree" })
-            vim.api.nvim_create_user_command("E", "Neotree position=current <args>",
-                { nargs = "?", complete = "dir" })
-        end,
-    },
+    -- -- Neotree (file explorer)
+    -- {
+    --     "nvim-neo-tree/neo-tree.nvim",
+    --     branch = "v3.x",
+    --     dependencies = {
+    --         "nvim-lua/plenary.nvim",
+    --         "MunifTanjim/nui.nvim",
+    --     },
+    --     config = function(_)
+    --         vim.keymap.set('n', '<leader>t', "<cmd>Neotree toggle<cr>", { desc = "Open Neotree" })
+    --         vim.api.nvim_create_user_command("E", "Neotree position=current <args>",
+    --             { nargs = "?", complete = "dir" })
+    --     end,
+    -- },
 
     -- Telescope (file search)
     {
